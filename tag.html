@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>태그 가중치 변환기</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            a:visited,
+            a:link,
+            a:hover,
+            a:active {
+                text-decoration: underline;
+                color: black;
+            }
+            .tagArea {
+                height: 250px;
+                resize: none;
+            }
+            .typeSelection {
+                width: 100%;
+            }
+            header,
+            main,
+            footer {
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+            }
+            header {
+                align-items: baseline;
+            }
+            header > h4 {
+                padding-left: 1vw;
+            }
+            .middle {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                margin-top: 1vh;
+                margin-bottom: 1vh;
+            }
+            .breakLine {
+                height: 0;
+                flex-basis: 100%;
+            }
+            @media all and (max-width: 1279px) {
+                .tagArea {
+                    width: 100%;
+                    margin-left: 1vw;
+                    margin-right: 1vw;
+                }
+            }
+            @media all and (min-width: 1280px) {
+                .tagArea {
+                    width: 50%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>태그 가중치 변환기</h1>
+            <h4>by PantaFive(<a href="https://github.com/panta5" target="_blank">Github</a>)</h4>
+        </header>
+        <div class="breakLine"></div>
+        <main>
+            <textarea id="before" class="tagArea"></textarea>
+            <div class="breakLine"></div>
+            <div class="middle">
+                <div class="typeSelection">
+                    <span>변환하고 싶은 방식을 선택해주세요.</span>
+                    <div class="breakLine"></div>
+                    <input type="radio" name="type" id="nai" value="nai" checked />
+                    <label for="nai" class="radioLabel">NovelAI</label>
+                    <div class="breakLine"></div>
+                    <input type="radio" name="type" id="webui" value="webui" />
+                    <label for="webui" class="radioLabel">SD-WebUI</label>
+                </div>
+                <div class="breakLine"></div>
+                <button
+                    id="convertNow"
+                    class="btn"
+                    onclick="convert(document.querySelector(`input[name=type]:checked`).value);"
+                >
+                    변환하기
+                </button>
+            </div>
+            <div class="breakLine"></div>
+            <textarea id="after" class="tagArea"></textarea>
+        </main>
+        <footer></footer>
+        <script>
+            var convertBtn = document.getElementById('convertNow');
+            const convert = (type) => {
+                let beforeData = document.getElementById('before').value.toString();
+                if (type == 'webui') {
+                    let afterData = beforeData.replaceAll('{', '(').replaceAll('}', ')').toString();
+                    document.getElementById('after').value = afterData.toString();
+                    console.log('WebUI 형식으로 변환됨.');
+                } else if (type == 'nai') {
+                    let afterData = beforeData.replaceAll('(', '{').replaceAll(')', '}').toString();
+                    document.getElementById('after').value = afterData.toString();
+                    console.log('NovelAI 형식으로 변환됨.');
+                }
+                return;
+            };
+        </script>
+    </body>
+</html>
