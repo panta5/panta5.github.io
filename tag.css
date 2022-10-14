@@ -1,0 +1,57 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+a:visited,
+a:link,
+a:hover,
+a:active {
+    text-decoration: underline;
+    color: black;
+}
+.tagArea {
+    height: 250px;
+    resize: none;
+}
+.typeSelection {
+    width: 100%;
+}
+header,
+main,
+footer {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+header {
+    align-items: baseline;
+}
+header > h4 {
+    padding-left: 1vw;
+}
+.middle {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+.breakLine {
+    height: 0;
+    flex-basis: 100%;
+}
+@media all and (max-width: 1279px) {
+    .tagArea {
+        width: 100%;
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+}
+@media all and (min-width: 1280px) {
+    .tagArea {
+        width: 50%;
+    }
+}
