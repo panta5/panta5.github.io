@@ -40,6 +40,7 @@ const calcWUItoNAI = (inputData) => {
     let data = inputData.toString().trim();
     let tag = data.replaceAll('(', '').replaceAll(')', '').toString().trim();
     let types = data.split(':').length - 1;
+    if (data.split('(').length - 1 == 0) return data;
     let num;
     if (types != 0) {
         num = parseFloat(tag.split(':')[1]) * 100;
