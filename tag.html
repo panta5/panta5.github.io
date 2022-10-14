@@ -5,65 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>태그 가중치 변환기</title>
-        <style>
-            html,
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            a:visited,
-            a:link,
-            a:hover,
-            a:active {
-                text-decoration: underline;
-                color: black;
-            }
-            .tagArea {
-                height: 250px;
-                resize: none;
-            }
-            .typeSelection {
-                width: 100%;
-            }
-            header,
-            main,
-            footer {
-                display: flex;
-                width: 100%;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-            }
-            header {
-                align-items: baseline;
-            }
-            header > h4 {
-                padding-left: 1vw;
-            }
-            .middle {
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                margin-top: 1vh;
-                margin-bottom: 1vh;
-            }
-            .breakLine {
-                height: 0;
-                flex-basis: 100%;
-            }
-            @media all and (max-width: 1279px) {
-                .tagArea {
-                    width: 100%;
-                    margin-left: 1vw;
-                    margin-right: 1vw;
-                }
-            }
-            @media all and (min-width: 1280px) {
-                .tagArea {
-                    width: 50%;
-                }
-            }
-        </style>
+        <link rel="stylesheet" href="tag.css" />
     </head>
     <body>
         <header>
@@ -98,29 +40,9 @@
             <div class="breakLine"></div>
             <textarea id="after" class="tagArea"></textarea>
             <div class="breakLine"></div>
-            <span
-                >두 프로그램간 가중치 배율이 달라서 (NAI: 1.05배, WebUI: 1.1배) 조금의 오차가 있을 수 있습니다
-                양해바랍니다</span
-            >
-            <div class="breakLine"></div>
-            <span>현재 해당 문제 인지했고 로직짜는중임</span>
+            <span>두 프로그램간 가중치가 달라서 근사값으로 변환됩니다.</span>
         </main>
         <footer></footer>
-        <script>
-            var convertBtn = document.getElementById('convertNow');
-            const convert = (type) => {
-                let beforeData = document.getElementById('before').value.toString();
-                if (type == 'webui') {
-                    let afterData = beforeData.replaceAll('{', '(').replaceAll('}', ')').toString();
-                    document.getElementById('after').value = afterData.toString();
-                    console.log('WebUI 형식으로 변환됨.');
-                } else if (type == 'nai') {
-                    let afterData = beforeData.replaceAll('(', '{').replaceAll(')', '}').toString();
-                    document.getElementById('after').value = afterData.toString();
-                    console.log('NovelAI 형식으로 변환됨.');
-                }
-                return;
-            };
-        </script>
+        <script src="tag.js"></script>
     </body>
 </html>
